@@ -56,6 +56,12 @@ class PlaybookExecutor:
 
         if options.listhosts or options.listtasks or options.listtags or options.syntax:
             self._tqm = None
+        elif options.mono_process:
+            #self._tqm = SequentialExecution
+            raise NotImplementedError
+        elif options.async_io:
+            #self._tqm = AsyncIoExecution
+            raise NotImplementedError
         else:
             self._tqm = TaskQueueManager(inventory=inventory, variable_manager=variable_manager, loader=loader, options=options, passwords=self.passwords)
 

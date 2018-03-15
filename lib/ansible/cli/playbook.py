@@ -67,6 +67,12 @@ class PlaybookCLI(CLI):
                           help="one-step-at-a-time: confirm each task before running")
         parser.add_option('--start-at-task', dest='start_at_task',
                           help="start the playbook at the task matching this name")
+        
+        parser.add_option('--mono-process', dest='mono_process', action='store_true',
+                          help="start the playbook with only the main process")
+        
+        parser.add_option('--async-io', dest='async_io', action='store_true',
+                          help="start the playbook with asynchronous I/O access")
 
         self.parser = parser
         super(PlaybookCLI, self).parse()
