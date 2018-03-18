@@ -4,7 +4,13 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-import multiprocessing
+import os
+
+# TODO change this using the ansible constant
+if os.getenv("ANSIBLE_PLAYBOOK_MULTITHREAD_MODE")=="true":
+    import multiprocessing.dummy as MTP 
+else:
+    import multiprocessing as MTP
 import random
 
 from ansible import constants as C
@@ -28,7 +34,7 @@ except ImportError:
 
 __all__ = ['do_encrypt']
 
-_LOCK = multiprocessing.Lock()
+_LOCK = MTP.Lock()
 
 DEFAULT_PASSWORD_LENGTH = 20
 

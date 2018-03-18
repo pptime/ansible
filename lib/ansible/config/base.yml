@@ -492,7 +492,7 @@ DEFAULT_CONNECTION_PLUGIN_PATH:
   yaml: {key: plugins.connection.path}
 DEFAULT_DEBUG:
   name: Debug mode
-  default: False
+  default: True
   description: Toggles debug output in Ansible, VERY verbose and can hinder multiprocessing.
   env: [{name: ANSIBLE_DEBUG}]
   ini:
@@ -992,6 +992,22 @@ DEFAULT_STRATEGY_PLUGIN_PATH:
   env: [{name: ANSIBLE_STRATEGY_PLUGINS}]
   ini:
   - {key: strategy_plugins, section: defaults}
+  type: pathspec
+DEFAULT_MONO_STRATEGY_PLUGIN_PATH:
+  name: Mono Strategy Plugins Path
+  description: Colon separated paths in which Ansible will search for Monoprocess Strategy Plugins.
+  default: ~/.ansible/plugins/monostrategy:/usr/share/ansible/plugins/monostrategy
+  env: [{name: MONO_ANSIBLE_STRATEGY_PLUGINS}]
+  ini:
+  - {key: mono_strategy_plugins, section: defaults}
+  type: pathspec
+DEFAULT_THREAD_STRATEGY_PLUGIN_PATH:
+  name: Thread Strategy Plugins Path
+  description: Colon separated paths in which Ansible will search for Multithreading Strategy Plugins.
+  default: ~/.ansible/plugins/threadstrategy:/usr/share/ansible/plugins/threadstrategy
+  env: [{name: THREAD_ANSIBLE_STRATEGY_PLUGINS}]
+  ini:
+  - {key: thread_strategy_plugins, section: defaults}
   type: pathspec
 DEFAULT_SU:
   default: False

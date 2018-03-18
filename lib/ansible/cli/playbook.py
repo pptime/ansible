@@ -74,6 +74,9 @@ class PlaybookCLI(CLI):
         parser.add_option('--async-io', dest='async_io', action='store_true',
                           help="start the playbook with asynchronous I/O access")
 
+        parser.add_option('--multithread', dest='multi_thread', action='store_true',
+                          help="start the playbook with python thread.")
+
         self.parser = parser
         super(PlaybookCLI, self).parse()
 

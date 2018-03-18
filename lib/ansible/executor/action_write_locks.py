@@ -19,7 +19,12 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-from multiprocessing import Lock
+import os
+
+if os.getenv("ANSIBLE_PLAYBOOK_MULTITHREAD_MODE")=="true":
+    from multiprocessing.dummy import Lock
+else:
+    from multiprocessing import Lock
 
 from ansible.module_utils.facts.system.pkg_mgr import PKG_MGRS
 

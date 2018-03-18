@@ -23,6 +23,7 @@ import os
 
 from ansible import constants as C
 from ansible.executor.task_queue_manager import TaskQueueManager
+from ansible.executor.task_thread_queue_manager import TaskThreadQueueManager
 from ansible.module_utils._text import to_native, to_text
 from ansible.playbook import Playbook
 from ansible.template import Templar
@@ -62,6 +63,9 @@ class PlaybookExecutor:
         elif options.async_io:
             #self._tqm = AsyncIoExecution
             raise NotImplementedError
+        elif options.multi_thread:
+            os.environ["ANSIBLE_PLAYBOOK_MULTITHREAD_MODE"]="true"
+            self._tqm = TaskThreadQueueManager(inventory=inventory, variable_manager=variable_manager, loader=loader, options=options, passwords=self.passwords)
         else:
             self._tqm = TaskQueueManager(inventory=inventory, variable_manager=variable_manager, loader=loader, options=options, passwords=self.passwords)
 

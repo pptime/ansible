@@ -627,6 +627,22 @@ strategy_loader = PluginLoader(
     required_base_class='StrategyBase',
 )
 
+mono_strategy_loader = PluginLoader(
+    'MonoStrategyModule',
+    'ansible.plugins.mono_strategy',
+    C.DEFAULT_MONO_STRATEGY_PLUGIN_PATH,
+    'mono_strategy_plugins',
+    required_base_class='StrategyBase',
+)
+
+thread_strategy_loader = PluginLoader(
+    'StrategyModule',
+    'ansible.plugins.thread_strategy',
+    C.DEFAULT_THREAD_STRATEGY_PLUGIN_PATH,
+    'thread_strategy_plugins',
+    required_base_class='StrategyBase',
+)
+
 terminal_loader = PluginLoader(
     'TerminalModule',
     'ansible.plugins.terminal',
